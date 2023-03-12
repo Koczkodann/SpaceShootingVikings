@@ -1,28 +1,27 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class GamePanel extends JPanel implements Runnable {
+
+public class GamePanel extends Canvas implements Runnable {
 //Game Settings
 int FPS = 60;
 
 //Player Options
-int playerX = 400;
-int playerY = 500;
-int playerSpeed = 10;
-
-    PlayerAction PlayerAction = new PlayerAction();
     Thread gameThread;
+    Player player = new Player();
+
 
     //Game Panel Options
     int Pwidth = 1000;
     int Pheight = 800;
+
     public GamePanel() {
         this.setPreferredSize(new Dimension(Pwidth,Pheight));
-        this.setBackground(Color.black);
-        this.setDoubleBuffered(true);
-        this.addKeyListener(PlayerAction);
+        this.setBackground(Color.BLACK);
+        this.addKeyListener(player.pa);
         this.setFocusable(true);
     }
+
 
     public void startgameThread(){
         gameThread = new Thread(this);
@@ -46,42 +45,24 @@ int playerSpeed = 10;
             lastFrame = CurrentTime;
 
             if(delta >= 1) {
-
                 //update screen information
-                update();
+                player.update();
                 //repaint updated information
+                validate();
                 repaint();
 
                 delta--;
             }
         }
     }
-    public void update(){
 
-        if(PlayerAction.up){
-            playerY = playerY - playerSpeed;
-        }
-        if(PlayerAction.down){
-            playerY = playerY + playerSpeed;
-        }
-        if(PlayerAction.left){
-            playerX = playerX - playerSpeed;
-        }
-        if(PlayerAction.right){
-            playerX =playerX + playerSpeed;
-        }
-
-    }
-
-    public void paintComponent(Graphics g){
-        super.paintComponent(g);
-
-        Graphics2D g2 = (Graphics2D)g;
-
-        g2.setColor(Color.white);
-
-        g2.fillRect(playerX,playerY,100,100);
-
-        g2.dispose(); //memory saving
+    public void paint(Graphics g){
+        Graphics2D g2 =(Graphics2D) g;
+        player.render(g2);
+        //System.out.println("Renderowanie");
+        //g2.setColor(Color.white);
+        //g2.fillRect(player.playerX,player.playerY,100,100);
     }
 }
+
+

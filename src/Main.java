@@ -10,8 +10,8 @@ public class Main {
         window.setTitle("BloodCode: Ragnarok");
 
         GamePanel gamepanel = new GamePanel();
-        window.add(gamepanel);
 
+        window.add(gamepanel);
         window.pack();
 
         window.setLocationRelativeTo(null);
