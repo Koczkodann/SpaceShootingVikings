@@ -10,7 +10,7 @@ int playerX = 400;
 int playerY = 500;
 int playerSpeed = 10;
 
-    KeyHandler keyHand = new KeyHandler();
+    PlayerAction PlayerAction = new PlayerAction();
     Thread gameThread;
 
     //Game Panel Options
@@ -20,7 +20,7 @@ int playerSpeed = 10;
         this.setPreferredSize(new Dimension(Pwidth,Pheight));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
-        this.addKeyListener(keyHand);
+        this.addKeyListener(PlayerAction);
         this.setFocusable(true);
     }
 
@@ -58,16 +58,16 @@ int playerSpeed = 10;
     }
     public void update(){
 
-        if(keyHand.up){
+        if(PlayerAction.up){
             playerY = playerY - playerSpeed;
         }
-        if(keyHand.down){
+        if(PlayerAction.down){
             playerY = playerY + playerSpeed;
         }
-        if(keyHand.left){
+        if(PlayerAction.left){
             playerX = playerX - playerSpeed;
         }
-        if(keyHand.right){
+        if(PlayerAction.right){
             playerX =playerX + playerSpeed;
         }
 
