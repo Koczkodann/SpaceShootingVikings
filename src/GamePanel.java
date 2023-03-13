@@ -1,17 +1,14 @@
-import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
-
 
 public class GamePanel extends Canvas implements Runnable {
 
 //Game Settings
 int FPS = 60;
 
+//Making Game Class objects
     Player player = new Player();
     ShootingControl sc = new ShootingControl();
     Thread gameThread;
-    //ArrayList Projectiles =sc.getProjectiles();
 
     //Game Panel Options
     int Pwidth = 1000;

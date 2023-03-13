@@ -24,7 +24,6 @@ public class ShootingControl {
         Projectiles.add(block);
     }
     public void removeProjectile(Projectile block){
-
         Projectiles.remove(block);
     }
 }
