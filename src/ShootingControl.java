@@ -1,27 +1,30 @@
 import java.awt.*;
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 public class ShootingControl {
-    private LinkedList<Projectile> p = new LinkedList<Projectile>();
-
+    public static ArrayList<Projectile> Projectiles = new ArrayList<>();
     Projectile TempProjectile;
 
-    public void tick(){
-        for(int i = 0; i <p.size(); i++){
-            TempProjectile = p.get(i);
+    public void update(){
+        for(int i = 0; i <Projectiles.size(); i++){
+            TempProjectile = Projectiles.get(i);
             TempProjectile.Projectile_movement();
+            if(TempProjectile.getY() < 0){
+                removeProjectile(TempProjectile);
+            }
         }
         }
     public void render(Graphics g){
-        for(int i = 0; i <p.size(); i++){
-            TempProjectile = p.get(i);
+        for(int i = 0; i <Projectiles.size(); i++){
+            TempProjectile = Projectiles.get(i);
             TempProjectile.render(g);
         }
     }
-    public void addProjectile(Projectile a){
-        p.add(a);
+    public void addProjectile(Projectile block){
+        Projectiles.add(block);
     }
-    public void removeProjectile(Projectile a){
-        p.remove(a);
+    public void removeProjectile(Projectile block){
+
+        Projectiles.remove(block);
     }
 }

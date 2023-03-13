@@ -1,15 +1,18 @@
 import java.awt.*;
+import java.util.ArrayList;
 
 public class Player {
 
     PlayerAction pa = new PlayerAction();
+    ShootingControl sc = new ShootingControl();
+
 
         public int playerX = 400;
         public int playerY = 500;
         public int playerSpeed = 10;
 
     public void update(){
-
+        //sc.update();
         if(pa.up){
             playerY = playerY - playerSpeed;
         }
@@ -23,6 +26,7 @@ public class Player {
             playerX =playerX + playerSpeed;
         }
         if(pa.shoot){
+            sc.addProjectile(new Projectile(playerX, playerY));
         }
 
 
@@ -31,7 +35,6 @@ public class Player {
 
         g.setColor(Color.white);
         g.fillRect(playerX,playerY,100,100);
-
-        g.dispose(); //memory saving
+        //g.dispose(); //memory saving
     }
 }

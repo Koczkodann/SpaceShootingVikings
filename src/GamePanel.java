@@ -1,15 +1,17 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 
 public class GamePanel extends Canvas implements Runnable {
+
 //Game Settings
 int FPS = 60;
 
-//Player Options
-    Thread gameThread;
     Player player = new Player();
-
+    ShootingControl sc = new ShootingControl();
+    Thread gameThread;
+    //ArrayList Projectiles =sc.getProjectiles();
 
     //Game Panel Options
     int Pwidth = 1000;
@@ -21,7 +23,6 @@ int FPS = 60;
         this.addKeyListener(player.pa);
         this.setFocusable(true);
     }
-
 
     public void startgameThread(){
         gameThread = new Thread(this);
@@ -47,8 +48,8 @@ int FPS = 60;
             if(delta >= 1) {
                 //update screen information
                 player.update();
+                sc.update();
                 //repaint updated information
-                validate();
                 repaint();
 
                 delta--;
@@ -58,11 +59,12 @@ int FPS = 60;
 
     public void paint(Graphics g){
         Graphics2D g2 =(Graphics2D) g;
-        player.render(g2);
-        //System.out.println("Renderowanie");
-        //g2.setColor(Color.white);
-        //g2.fillRect(player.playerX,player.playerY,100,100);
+            sc.render(g2);
+            player.render(g2);
+            g2.dispose();
     }
+
 }
+
 
 
