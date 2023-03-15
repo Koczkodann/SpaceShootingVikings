@@ -9,6 +9,8 @@ public class Player {
         public int playerX = 400;
         public int playerY = 500;
         public int playerSpeed = 10;
+        public int playerAttackSpeed = 200; //in milliseconds
+        long timeOfLastProjectile = 0;
 
     public void update(){
         if(pa.up){
@@ -24,7 +26,13 @@ public class Player {
             playerX =playerX + playerSpeed;
         }
         if(pa.shoot){
-            sc.addProjectile(new Projectile(playerX, playerY));
+            long timeNow = System.currentTimeMillis();
+            long time = timeNow - timeOfLastProjectile;
+            if (time < 0 || time > playerAttackSpeed) {
+                timeOfLastProjectile = timeNow;
+                sc.addProjectile(new Projectile(playerX, playerY));
+            }
+
         }
 
 
