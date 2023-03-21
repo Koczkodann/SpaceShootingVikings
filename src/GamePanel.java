@@ -1,19 +1,24 @@
+import Enemy.*;
+import Player.*;
+
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class GamePanel extends Canvas implements Runnable {
 
 //Game Settings
 double FPS = 60;
 
-//Making Game Class objects
+    //Making Game Class objects
     Player player = new Player();
     ShootingControl sc = new ShootingControl();
     WavePattern fw = new WavePattern(sc,player);
     Thread gameThread;
 
     //Game Panel Options
-    int Pwidth = 1000;
-    int Pheight = 800;
+    int Pwidth = 1920;
+    int Pheight = 1080;
+    BufferedImage Background;
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(Pwidth,Pheight));

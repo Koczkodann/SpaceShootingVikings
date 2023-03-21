@@ -1,3 +1,6 @@
+package Enemy;
+
+import Player.*;
 import java.awt.*;
 import java.util.Random;
 

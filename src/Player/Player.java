@@ -1,15 +1,17 @@
+package Player;
+
 import java.awt.*;
 
 public class Player {
 
     public boolean Start;
 
-    PlayerAction pa = new PlayerAction();
+    public PlayerAction pa = new PlayerAction();
     ShootingControl sc = new ShootingControl();
 
-        //Player Options
-        public int playerX = 400;
-        public int playerY = 500;
+        //Player.Player Options
+        public int playerX = 960;
+        public int playerY = 900;
         public int playerSpeed = 10;
         public int playerAttackSpeed = 200; //in milliseconds
         long timeOfLastProjectile = 0;

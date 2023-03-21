@@ -1,8 +1,11 @@
+package Enemy;
+
+import Player.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class FodderEnemy extends Enemy{
-    public FodderEnemy(int x, int y,int Health, int Speed,int width, int height,ShootingControl sc) {
+public class FodderEnemy extends Enemy {
+    public FodderEnemy(int x, int y, int Health, int Speed, int width, int height, ShootingControl sc) {
         super(x, y,Health, Speed,width,height,sc);
     }
     public static ArrayList<FodderEnemy> FodderEnemies = new ArrayList<>();
