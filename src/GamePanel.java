@@ -3,11 +3,12 @@ import java.awt.*;
 public class GamePanel extends Canvas implements Runnable {
 
 //Game Settings
-int FPS = 60;
+double FPS = 60;
 
 //Making Game Class objects
     Player player = new Player();
     ShootingControl sc = new ShootingControl();
+    WavePattern fw = new WavePattern(sc,player);
     Thread gameThread;
 
     //Game Panel Options
@@ -36,20 +37,20 @@ int FPS = 60;
 
         while(gameThread != null) {
 
-            CurrentTime =System.nanoTime();
+                CurrentTime = System.nanoTime();
 
-            delta += (CurrentTime - lastFrame) / FrameInterval;
+                delta += (CurrentTime - lastFrame) / FrameInterval;
 
-            lastFrame = CurrentTime;
+                lastFrame = CurrentTime;
 
-            if(delta >= 1) {
-                //update screen information
-                player.update();
-                sc.update();
-                //repaint updated information
-                repaint();
-
-                delta--;
+                if (delta >= 1) {
+                    //update screen information
+                    player.update();
+                    sc.update();
+                    fw.Fodder1(2000);
+                    //repaint current screen information
+                        repaint();
+                    delta--;
             }
         }
     }
@@ -58,6 +59,7 @@ int FPS = 60;
         Graphics2D g2 =(Graphics2D) g;
             sc.render(g2);
             player.render(g2);
+            fw.renderwave(g2);
             g2.dispose();
     }
 

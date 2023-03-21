@@ -3,7 +3,7 @@ import java.awt.event.KeyListener;
 
 public class PlayerAction implements KeyListener {
 
-    public boolean up,down,left,right,shoot,R;
+    public boolean up,down,left,right,shoot,R,ENTER;
 
     @Override
     public void keyTyped(KeyEvent e) {
@@ -11,6 +11,9 @@ public class PlayerAction implements KeyListener {
 
         if(press == KeyEvent.VK_R){
             R = true;
+        }
+        if(press == KeyEvent.VK_ENTER) {
+            ENTER = true;
         }
     }
 

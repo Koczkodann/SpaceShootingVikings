@@ -2,6 +2,8 @@ import java.awt.*;
 
 public class Player {
 
+    public boolean Start;
+
     PlayerAction pa = new PlayerAction();
     ShootingControl sc = new ShootingControl();
 
@@ -32,10 +34,10 @@ public class Player {
                 timeOfLastProjectile = timeNow;
                 sc.addProjectile(new Projectile(playerX, playerY));
             }
-
         }
-
-
+        if(pa.ENTER){
+            Start = true;
+        }
     }
     public void render(Graphics2D g){
         g.setColor(Color.white);

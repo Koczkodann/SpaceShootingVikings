@@ -1,24 +1,19 @@
 import java.awt.*;
 
 public abstract class Enemy {
-    int Health, ShootSpeed,x,y,width,height;
+    int Health, Speed,x,y,width,height;
     ShootingControl sc;
-    public Enemy(int x, int y,int Health, int ShootSpeed, int width,int height, ShootingControl sc) {
-       this.Health=Health;
-       this.ShootSpeed=ShootSpeed;
-       this.x=x;
-       this.y=y;
-       this.width=width;
-       this.height=height;
-       this.sc = sc;
+    public Enemy(int x, int y, int Health, int Speed, int width,int height, ShootingControl sc) {
+        this.x = x;
+        this.y =y;
+        this.Health=Health;
+        this.Speed=Speed;
+        this.width=width;
+        this.height=height;
+        this.sc = sc;
     }
 
-
     Projectile TempProjectile;
-
-    void Enemy_movement(){
-
-     }
 
      public void DamageHandler(){
          for(int i = 0; i <sc.Projectiles.size(); i++) {
@@ -30,8 +25,6 @@ public abstract class Enemy {
                      System.out.println("Trafienie!");
                      System.out.println(Health);
                  }
-             } else if (Health < 0) {
-                 //remove from enemy array
              }
          }
      }
