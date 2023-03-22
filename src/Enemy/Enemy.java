@@ -24,7 +24,7 @@ public abstract class Enemy {
      public void DamageHandler(){
          for(int i = 0; i < ShootingControl.Projectiles.size(); i++) {
              TempProjectile = ShootingControl.Projectiles.get(i);
-                if(collider.SqrtCollider(x, y,TempProjectile.getX(), TempProjectile.getY(),width,height, TempProjectile.getWidth(), TempProjectile.getHeight())==true) {
+                if(collider.SqrtCollider(x, y, TempProjectile.getX(), TempProjectile.getY(), width, height, TempProjectile.getWidth(), TempProjectile.getHeight())) {
                     sc.removeProjectile(TempProjectile);
                     Health--;
                     System.out.println("Trafienie!");
