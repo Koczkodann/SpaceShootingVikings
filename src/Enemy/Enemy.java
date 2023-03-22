@@ -1,14 +1,14 @@
 package Enemy;
 
+import Main.Collider;
 import Player.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public abstract class Enemy {
     int Health, Speed,x,y,width,height;
-    BufferedImage BuffImage;
     ShootingControl sc;
-    public Enemy(int x, int y, int Health, int Speed, int width,int height, ShootingControl sc/*,BufferedImage BuffImage*/) {
+    public Enemy(int x, int y, int Health, int Speed, int width,int height, ShootingControl sc) {
         this.x = x;
         this.y =y;
         this.Health=Health;
@@ -16,28 +16,25 @@ public abstract class Enemy {
         this.width=width;
         this.height=height;
         this.sc = sc;
-        //this.BuffImage = BuffImage;
     }
 
+    Collider collider = new Collider();
     Projectile TempProjectile;
 
      public void DamageHandler(){
          for(int i = 0; i < ShootingControl.Projectiles.size(); i++) {
              TempProjectile = ShootingControl.Projectiles.get(i);
-             if (TempProjectile.getX() + TempProjectile.getWidth() > x && TempProjectile.getX() < x + width) {
-                 if (TempProjectile.getY() <= y + height) {
-                     sc.removeProjectile(TempProjectile);
-                     Health--;
-                     System.out.println("Trafienie!");
-                     System.out.println(Health);
+                if(collider.SqrtCollider(x, y,TempProjectile.getX(), TempProjectile.getY(),width,height, TempProjectile.getWidth(), TempProjectile.getHeight())==true) {
+                    sc.removeProjectile(TempProjectile);
+                    Health--;
+                    System.out.println("Trafienie!");
+                    System.out.println(Health);
+                }
                  }
              }
-         }
-     }
 
-     public void Enemy_render(Graphics2D g){
-         g.setColor(Color.red);
-         g.fillRect(x, y, width, height);
+     public void Enemy_render(Graphics2D g, BufferedImage Sprite){
+         g.drawImage(Sprite, x, y,width,height,null);
      }
 
      public int getHealth() {
